@@ -1,4 +1,5 @@
 import HomeContainer from "containers/HomeContainer.jsx";
+import UsersContainer from "containers/UsersContainer.jsx";
 import NotFound from "components/NotFound.jsx";
 
 const layoutRoutes = [
@@ -15,7 +16,7 @@ const layoutRoutes = [
   {
     path: "/user",
     exact: false,
-    component: HomeContainer
+    component: UsersContainer
   },
 ];
 

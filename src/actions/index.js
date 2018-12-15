@@ -1,7 +1,7 @@
-import * as User from "./UserActions";
+import * as Users from "./UserActions";
 
 const Actions = {
-	User
+	Users
 };
 
 export default Actions;

@@ -3,26 +3,28 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import TitleAction from "components/TitleAction.jsx";
 
-import "./Home.css";
-
 class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
 	}
 
+	newUserPage = () => {
+		this.props.history.push("/user");
+	};
+
 	render() {
-		let users = this.props.users.users.map(user => {
+		let users = this.props.users.list.map(user => {
 			return (
-				<li>
+				<li key={user.name}>
 					<Link to={`user?id=${user.id}`}>{user.name}</Link>
 				</li>
 			);
 		});
 
 		return (
-			<div className="home">
-        <TitleAction title="Users" button="new"/>
+			<div className="container">
+				<TitleAction title="Users" button="new" action={this.newUserPage} />
 				<ul>{users}</ul>
 			</div>
 		);
@@ -30,7 +32,8 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-	users: PropTypes.array.isRequired
+	users: PropTypes.object.isRequired,
+	history: PropTypes.object.isRequired
 };
 
 export default Home;

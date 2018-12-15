@@ -4,49 +4,68 @@ import * as storage from "libs/storage.js";
 let storagedUsers = storage.get();
 
 const initialState = {
-  fetching: true,
-  fetchingSucc: false,
-  fetchingErr: false,
-  users: [
-     {
-       id: 1,
-       name: "Gianni"
-     },
-     {
-       id: 2,
-       name: "Giorgio"
-     },
-  ]
+	fetching: false,
+	fetchingSucc: false,
+	fetchingErr: false,
+	list: storagedUsers ? storagedUsers : []
 };
-// users: storagedUsers ? storagedUsers : []
 
 function user(state = initialState, action) {
-  switch (action.type) {
-    case Actions.User.CREATE:
-      return {
-        ...state,
-        fetching: true,
-        fetchingSucc: false,
-        fetchingErr: false
-      };
-    case Actions.User.CREATE_SUCC:
-      return {
-        ...state,
-        fetching: false,
-        fetchingSucc: true,
-        fetchingErr: false,
-        users: [...state.users, action.payload.user]
-      };
-    case Actions.User.CREATE_ERR:
-      return {
-        ...state,
-        fetching: false,
-        fetchingSucc: false,
-        fetchingErr: true
-      };
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case Actions.Users.CREATE:
+			return {
+				...state,
+				fetching: true,
+				fetchingSucc: false,
+				fetchingErr: false
+			};
+		case Actions.Users.CREATE_SUCC:
+			return {
+				...state,
+				fetching: false,
+				fetchingSucc: true,
+				fetchingErr: false,
+				list: [...state.list, action.payload]
+			};
+		case Actions.Users.CREATE_ERR:
+			return {
+				...state,
+				fetching: false,
+				fetchingSucc: false,
+				fetchingErr: true
+			};
+		case Actions.Users.UPDATE:
+			return {
+				...state,
+				fetching: true,
+				fetchingSucc: false,
+				fetchingErr: false
+			};
+		case Actions.Users.UPDATE_SUCC:
+			return {
+				...state,
+				fetching: false,
+				fetchingSucc: true,
+				fetchingErr: false,
+				list: [...state.list.slice(0, action.payload.id - 1), action.payload, ...state.list.slice(action.payload.id)]
+			};
+		case Actions.Users.UPDATE_ERR:
+			return {
+				...state,
+				fetching: false,
+				fetchingSucc: false,
+				fetchingErr: true
+			};
+		case Actions.Users.RESET_FETCH:
+			return {
+				...state,
+				fetching: false,
+				fetchingSucc: false,
+				fetchingErr: false
+			};
+		default:
+			return state;
+	}
 }
 
 export default user;
