@@ -1,44 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Frontend assesment
 
-## Available Scripts
+## Goals of the assesment
 
-In the project directory, you can run:
+Evaluate implementation of concepts related to component-based architectures, testing and frontend related knowledge in general.
 
-### `npm start`
+## Requirements
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![schema](schema.jpg)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Build a React application that allow to create users with name and friends (friends are also users) with the following:
 
-### `npm test`
+- A page that lists all users and links to a user detail page and to a "create user" page (1 in schema)
+- A page to create a new user (2 in schema)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - in this page a user must insert a name
+  - a friend can optionally be selected by users already existing
+  - if "new friend" is clicked a new "create user" page is stacked on top of the current one while showing a slice of the previous
+    NB: this can we done infinitely - when two or more creation are stacked clicking on a lower item in the stack asks the user to save or abort current user creation
 
-### `npm run build`
+- A page that allow edit of a user (3 in schema)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## constrains
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- a user creation or user update can randomly fail.
+- if a creation fails, try again without the user knowing
+- if a creation fails two times in a row inform the user that something went wrong and show a button that allow for a retry
+- cannot have two or more users with the same name
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Faq
 
-### `npm run eject`
+Q: Should I create a server for the API?  
+A: No, an in-memory implementation is enought
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Q: Is the visual styling relevant for this test  
+A: No
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Q: Should it work on mobile?  
+A: This is unimportant
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Q: Can I use an existing component library? (material-ui, reactstrap etc)  
+A: No, it creates too much unnecessary clutter, defeating the purpose of this test.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Q: Can I use library XXX or framework YYY ?  
+A: Use anything you think is most appropriate for the usecase
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Q: What should I test and how should I test it?  
+A: This decision is open to developer.
