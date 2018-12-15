@@ -1,7 +1,7 @@
 import HomeContainer from "containers/HomeContainer.jsx";
 import NotFound from "components/NotFound.jsx";
 
-const routes = [
+const layoutRoutes = [
   {
     path: "/",
     exact: true,
@@ -13,11 +13,18 @@ const routes = [
     component: HomeContainer
   },
   {
+    path: "/user",
+    exact: false,
+    component: HomeContainer
+  },
+];
+
+const emptyRoutes = [
+  {
     path: "*",
     exact: false,
     component: NotFound
-  },
-  
-];
+  }
+]
 
-export default routes;
+export { layoutRoutes, emptyRoutes };

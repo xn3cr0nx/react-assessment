@@ -7,8 +7,18 @@ const initialState = {
   fetching: true,
   fetchingSucc: false,
   fetchingErr: false,
-  users: storagedUsers ? storagedUsers : []
+  users: [
+     {
+       id: 1,
+       name: "Gianni"
+     },
+     {
+       id: 2,
+       name: "Giorgio"
+     },
+  ]
 };
+// users: storagedUsers ? storagedUsers : []
 
 function user(state = initialState, action) {
   switch (action.type) {
