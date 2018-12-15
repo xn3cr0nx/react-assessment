@@ -17,7 +17,7 @@ const Title = styled.h1`
 const Image = styled.img`
   width: 30%;
   max-width: 80vw;
-  animation: App-logo-spin infinite 20s linear;
+  animation: logo-spin infinite 20s linear;
 `;
 
 const NotFound = () => {

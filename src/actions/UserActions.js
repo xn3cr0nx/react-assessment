@@ -1,12 +1,18 @@
-// export const LANG = "@@/user/language";
-// export const TIMEZONE = "@@/user/time_zone";
+export const CREATE = "@@/user/create";
+export const CREATE_SUCC = "@@/user/create/succ";
+export const CREATE_ERR = "@@/user/create/err";
 
-// export const Language = lang => ({
-//   type: LANG,
-//   payload: lang
-// });
+export const CreateUser = user => ({
+	type: CREATE,
+	payload: user
+});
 
-// export const TimeZone = time_zone => ({
-//   type: TIMEZONE,
-//   payload: time_zone
-// });
+export const CreateUserSucc = user => ({
+	type: CREATE_SUCC,
+	payload: user
+});
+
+export const CreateUserErr = err => ({
+	type: CREATE_ERR,
+	payload: err
+});

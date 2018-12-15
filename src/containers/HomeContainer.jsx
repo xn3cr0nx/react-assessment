@@ -1,11 +1,10 @@
 import Actions from "actions";
 import { connect } from "react-redux";
-import Home from "components/Home.jsx";
+import Home from "components/home/Home.jsx";
 
 const mapStateToProps = state => {
   return {
-    app: state.app,
-    auth: state.auth,
+    users: state.users,
   };
 };
 
