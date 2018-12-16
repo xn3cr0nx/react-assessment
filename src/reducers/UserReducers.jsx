@@ -7,8 +7,20 @@ const initialState = {
 	fetching: false,
 	fetchingSucc: false,
 	fetchingErr: false,
-	list: storagedUsers ? storagedUsers : []
+  list: storagedUsers ? storagedUsers : []
 };
+    // list: [
+    //   {
+    //     id: 1,
+    //     name: "John",
+    //     friends: ["Gino"]
+    //   },
+    //   {
+    //     id: 2,
+    //     name: "James",
+    //     friends: ["Gino"]
+    //   }
+    // ]
 
 function user(state = initialState, action) {
 	switch (action.type) {

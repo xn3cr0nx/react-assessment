@@ -3,3 +3,13 @@
   flex-direction: column;
   align-items: start;
 }
+
+.friends_box {
+  max-width: 12vw;
+  padding: 1rem;
+  border: 0.3rem double black;
+  border-radius: 0.5rem;
+}
+
+.check_input {
+}
