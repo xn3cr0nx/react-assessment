@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import { Notification } from "react-pnotify";
 import TitleAction from "components/TitleAction.jsx";
 import Button from "components/Button.jsx";
+import ErrorButton from "components/ErrorButton.jsx";
 import FriendsBox from "components/FriendsBox.jsx";
 import { trigger3s } from "libs/lib.js";
 import "css/users.css";
@@ -41,7 +42,8 @@ class Users extends Component {
 			friends: [],
 			modal: false,
 			missingName: false,
-			alreadyName: false
+			alreadyName: false,
+			error: false
 		};
 	}
 
@@ -58,15 +60,16 @@ class Users extends Component {
 			trigger3s.call(this, "alreadyName");
 			return;
 		}
+		this.setState({ error: false });
 		this.props.createUser({ name: this.state.name, friends: this.state.friends });
-		this.setState({ name: "" });
 	};
 
 	updateUser = () => {
 		if (
-			this.state.name ||
+			(this.state.name && this.state.name != this.props.users.list.filter(user => user.id === this.state.id)[0].name) ||
 			!isEqual(this.state.friends, this.props.users.list.filter(user => user.id === this.state.id)[0].friends)
 		) {
+			this.setState({ error: false });
 			let user = {
 				id: this.state.id,
 				friends: this.state.friends
@@ -75,7 +78,6 @@ class Users extends Component {
 				? this.props.users.list.filter(user => user.id == this.state.id)[0].name
 				: this.state.name;
 			this.props.updateUser(user);
-			this.setState({ name: "" });
 		}
 	};
 
@@ -125,15 +127,15 @@ class Users extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		console.log("====================================");
-		console.log("UPDATE", prevProps.users, this.props.users);
-		console.log("====================================");
 		if (
-			!prevProps.users.fetchingSucc &&
-			this.props.users.fetchingSucc &&
+			prevProps.users.fetchingSucc != this.props.users.fetchingSucc &&
 			prevProps.users.list.length < this.props.users.list.length
 		)
 			this.props.history.push("/");
+		if (prevProps.users.fetchingErr != this.props.users.fetchingErr) {
+			this.setState({ error: true });
+			this.props.resetFetching();
+		}
 	}
 
 	handleKeyPress = e => {
@@ -175,7 +177,7 @@ class Users extends Component {
 				text={
 					this.state.missingName
 						? "You must insert a name"
-						: this.props.fetchingErr
+						: this.state.error
 						? "Something went wrong"
 						: "An user with this name already exists"
 				}
@@ -192,10 +194,11 @@ class Users extends Component {
 		return (
 			<div className="container" onKeyPress={this.handleKeyPress}>
 				{modal}
-				{(this.state.missingName || this.state.alreadyName || this.props.fetchingErr) && notifyError}
+				{(this.state.missingName || this.state.alreadyName || this.state.error) && notifyError}
 
 				{this.state.type === "new" ? (
 					<div>
+						{this.state.error && <ErrorButton onClick={this.saveUser}>retry</ErrorButton>}
 						<TitleAction title="new user" button="save" action={this.saveUser} />
 						<div className="name">
 							<label htmlFor="name">name</label>
@@ -210,6 +213,7 @@ class Users extends Component {
 					</div>
 				) : (
 					<div>
+						{this.state.error && <ErrorButton onClick={this.updateUser}>retry</ErrorButton>}
 						<TitleAction title={name} button="save" action={this.updateUser} />
 						<div className="name">
 							<label htmlFor="name">name</label>

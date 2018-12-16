@@ -9,8 +9,7 @@ let retry = 0;
 // application based on its answers
 
 function fakeAPI() {
-	// if (Math.random() >= 0.5) throw "random error";
-	throw "random error";
+	if (Math.random() >= 0.5) throw "random error";
 }
 
 function* createUser(action) {
