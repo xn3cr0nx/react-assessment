@@ -13,4 +13,10 @@ const TitleAction = props => {
 	);
 };
 
+TitleAction.propTypes = {
+	title: PropTypes.string,
+	button: PropTypes.string,
+	action: PropTypes.func
+}
+
 export default TitleAction;

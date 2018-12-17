@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme-to-json": "^3.3.5",
     "lodash.isequal": "^4.5.0",
     "qs": "^6.6.0",
     "react": "^16.6.3",
@@ -12,6 +15,7 @@
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-test-renderer": "^16.6.3",
     "redux": "^4.0.1",
     "redux-saga": "^0.16.2",
     "styled-components": "^4.1.2",
