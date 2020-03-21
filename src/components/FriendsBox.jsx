@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Button from "components/Button.jsx";
 
@@ -8,7 +8,7 @@ const FriendsBox = props => {
 			<li key={friend} className="check_input">
 				{friend}
 				<Button id={friend} onClick={props.removeFriend}>
-					remove
+					Remove
 				</Button>
 			</li>
 		);
@@ -16,11 +16,11 @@ const FriendsBox = props => {
 
 	return (
 		<div>
-			<p>friends</p>
+			<p>Friends</p>
 			<div className="friends_box">
 				<div className="friends_actions">
-					<Button onClick={props.openModal}>select friend</Button>
-					<Button onClick={props.newFriend}>new friend</Button>
+					<Button onClick={props.openModal}>Select Friend</Button>
+					<Button onClick={props.newFriend}>New Friend</Button>
 				</div>
 				<ul>{friends}</ul>
 			</div>

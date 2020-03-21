@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { HashRouter, Route, Switch } from "react-router-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PublicLayout from "components/layouts/PublicLayout.jsx";
 import { layoutRoutes, emptyRoutes } from "routes.jsx";

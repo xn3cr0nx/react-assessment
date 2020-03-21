@@ -5,10 +5,14 @@
 }
 
 .friends_box {
-  max-width: 12vw;
+  max-width: 15vw;
   padding: 1rem;
   border: 0.3rem double black;
   border-radius: 0.5rem;
+}
+
+.friends_actions {
+  display: flex;
 }
 
 .check_input {

@@ -199,9 +199,9 @@ class Users extends Component {
 				{this.state.type === "new" ? (
 					<div>
 						{this.state.error && <ErrorButton onClick={this.saveUser}>retry</ErrorButton>}
-						<TitleAction title="new user" button="save" action={this.saveUser} />
+						<TitleAction title="New User" button="save" action={this.saveUser} />
 						<div className="name">
-							<label htmlFor="name">name</label>
+							<label htmlFor="name">Name</label>
 							<input id="name" type="text" value={this.state.name} onChange={this.handleName} />
 						</div>
 						<FriendsBox
